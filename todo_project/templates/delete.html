@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}DELETE{% endblock %}
+{% block content %}
+<div class="delet-bg">
+  <div class="center-div">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h4><b>Are you sure this task is done?</b></h4>
+      <button type="submit">CONFIRM</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+.banner{
+    background-color:#282a35;
+    width: 100%;
+    height: 100px;
+    margin-bottom:50px;
+}
+
+.banner-text h1{
+    text-align: center;
+    padding: 2%;
+    color: white;
+}
+
+.delete-bg{
+    background-color:#04aa6d;
+}
+
+.center-div{
+    margin-top: 10%;
+    margin-left: 45%;
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}DETAILS{% endblock %}
+{% block content %}
+
+            <table class="table P-3 shadow">
+                <tr>
+                    <th>Task</th>
+                    <th>Priority</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                </tr>
+                <tr>
+                    <td>{{task.name}}</td>
+                    <td>{{task.priority}}</td>
+                    <td>{{task.date}}</td>
+                    <td><a class="btn btn-success" href="{% url 'delete' task.id %}">DONE</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'update' task.id %}">EDIT</a></td>
+                </tr>
+            </table>
+
+{% endblock %}
+
