@@ -1,0 +1,14 @@
+div{
+}
+a{
+    text-decoration: none;
+}
+
+.my_footer{
+    background-color: #deffe7;
+    margin-top: 100px;
+}
+
+.my_footer p{
+    padding: 10px;
+}

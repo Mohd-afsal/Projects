@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if  category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welome to Flopkart, th ultimate online shopee.
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+        Search - Flopkart.com
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p class="text-center" style="margin-top:20px;">You have searched for : <b>"{{query}}"</b></p>
+
+        {% for product in products %}
+            <div class="col-4 mt-3">
+                <div class="card" style="width: 18rem;">
+                    <a href="{{product.get_url}}"><img src="{{product.image.url}}" class="card-img-top" alt="{{product.name}}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{product.name}}</h5>
+                        <div class="text-success">
+                            <hr class="border border-success border-2 opacity-50">
+                        </div>
+                        <h6 class="card-subtitle text-success"><i class="fa-solid fa-indian-rupee-sign" style="color: #04aa6d;font-size:0.9vw;"></i> {{product.price}}</h6>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+                <div class="row mx-auto">
+                    <p class="text-center" style="margin-top:20px;">
+                    "No results found"
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+
+</div>
+{% endblock %}

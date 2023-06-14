@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if  category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welome to Flopkart, th ultimate online shopee.
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+        Cart - Flopkart.com
+{% endblock %}
+
+{% block content %}
+{% if not cart_items %}
+<div class="conatiner">
+    <div class="text-center">
+        <h1 class="text-center" style="margin-top:20px;">
+            Your cart is empty!
+        </h1>
+        <p class="text-center" style="margin-top:20px;">Please click <a href="{% url 'flopkart_a:allProdCat' %}">here</a> to view products.</b></p>
+
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="text-center">
+        <h1 class="text-center" style="margin-top:20px;">
+            Your shopping cart.
+        </h1>
+    </div>
+</div>
+
+<div class="container">
+        <div class="col-12 mx-auto">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Products</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for cart_item in cart_items %}
+                <tr>
+                    <td class="col-6">
+                        <a class="text-decoration-none" href="{{cart_item.product.get_url}}">
+                            <img class="img-fluid img-thumbnail" style="width:15%;" src="{{cart_item.product.image.url}}" alt="{{cart_item.product.name}}">
+                        </a>
+                        <a class="text-decoration-none text-reset text-center" href="{{cart_item.product.get_url}}">
+                            {{cart_item.product.name}}&nbsp;|&nbsp;SKU&nbsp;:&nbsp;{{cart_item.product.id}}
+                        </a>
+                    </td>
+                  <td class="col-2"><i class="fa-solid fa-indian-rupee-sign" style="color: #04aa6d;font-size:0.9vw;"></i>{{cart_item.product.price}}</td>
+                  {% if cart_item.quantity < cart_item.product.stock %}
+                  <td class="col-2">x&nbsp;{{cart_item.quantity}}&nbsp;
+                      <a class="text-decoration-none" href="{% url 'cart:minus_cart' cart_item.product.id %}">
+                          <i class="fa-solid fa-square-minus fa-xl" style="color: #04aa6d;"></i>
+                      </a>
+                      &nbsp;
+                      <a class="text-decoration-none" href="{% url 'cart:add_cart' cart_item.product.id %}">
+                          <i class="fa-solid fa-square-plus fa-xl" style="color: #04aa6d;"></i>
+                      </a>
+                      &nbsp;
+                      <a class="text-decoration-none" href="{% url 'cart:delete_cart_item' cart_item.product.id %}">
+                          <i class="fa-solid fa-trash-can fa-xl" style="color: #F1543F;"></i>
+                      </a>
+                  </td>
+                  {% else %}
+                  <td class="col-2">x&nbsp;{{cart_item.quantity}}
+                      &nbsp;
+                      <a class="text-decoration-none" href="{% url 'cart:minus_cart' cart_item.product.id %}">
+                          <i class="fa-solid fa-square-minus fa-xl" style="color: #04aa6d;"></i>
+                      </a>
+                      &nbsp;
+                      <a class="disabled text-decoration-none" href="">
+                          <i class="fa-solid fa-square-plus fa-xl" style="color: #F1543F;"></i>
+                      </a>
+                      &nbsp;
+                      <a class="text-decoration-none" href="{% url 'cart:delete_cart_item' cart_item.product.id %}">
+                          <i class="fa-solid fa-trash-can fa-xl" style="color: #F1543F;"></i>
+                      </a>&nbsp;
+                  </td>
+                  {% endif %}
+                  <td class="col-2"><i class="fa-solid fa-indian-rupee-sign" style="color: #04aa6d;font-size:0.9vw;"></i> {{cart_item.sub_total}}</td>
+              {% endfor %}
+                </tr>
+              <tr>
+                  <td colspan="3" class="text-end fw-bolder">Grand Total</td>
+                  <td><div class="fw-bolder"><i class="fa-solid fa-indian-rupee-sign" style="color: #04aa6d;font-size:0.9vw;"></i> {{total}}</div></td>
+              </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="col-12 text-center">
+            <h5>CHECKOUT</h5>
+            <h7 class="mx-auto">Please review your shopping cart items before proceeding with payment</h7><br><br>
+            <a href="{% url 'flopkart_a:allProdCat' %}" class="btn btn-success">Proceed with payment</a>
+            <a href="{% url 'flopkart_a:allProdCat' %}" class="btn btn-secondary">Continue shopping</a>
+        </div>
+</div>
+{% endif %}
+{% endblock %}
