@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        body{
+            background-color: aliceblue;
+        }
+
+        table{
+            width: 400px;
+            border: 1px solid black;
+            background-color: beige;
+            padding: 5%;
+        }
+
+        td{
+            line-height: 25px;
+            padding: 2%;
+        }
+
+        form{
+            margin: 13% 38%;
+        }
+
+        .textbox{
+            width: 100%;
+        }
+
+        a{
+            text-decoration:none;
+        }
+
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        li{
+            display: inline;
+            float: right;
+            padding: 8px;
+            display: block;
+            font-style: bold;
+        }
+
+        li a:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul>
+        <li><a href="/register">REGISTER</a></li>
+        <li>|</li>
+        <li><a href="/">HOME</a></li>
+    </ul>
+</div>
+<form method="post" action="">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td><label>Username</label></td>
+            <td><input type="text" name="username" class="textbox"></td>
+        </tr>
+        <tr>
+            <td><label>Password</label></td>
+            <td><input type="password" name="password" class="textbox"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><!--suppress XmlDeprecatedElement -->
+                <center><input type="submit" value="SUBMIT" name="submit_btn" style="width: 30%;"></center>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><!--suppress XmlDeprecatedElement -->
+                <center>
+                    {% for msg in messages %}
+                    <b style="color:red;">{{msg}}</b>
+                    {% endfor %}
+                </center>
+            </td>
+        </tr>
+
+
+    </table>
+
+</form>
+
+</body>
+</html>

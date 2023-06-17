@@ -30,10 +30,14 @@
 							<div class="logo"><a href="index.html">Travello</a></div>
 							<nav class="main_nav">
 								<ul class="d-flex flex-row align-items-start justify-content-start">
-									<li><a href="index.html">Home</a></li>
-									<li class="active"><a href="about.html">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="news.html">News</a></li>
+									<li class="active"><a href="/">Home</a></li>
+									{% if user.is_authenticated %}
+									<li class="active"><a href="/">HELLO, {{user.username}}</a></li>
+									<li><a href="logout/">Logout</a></li>
+									{% else %}
+									<li><a href="login/">Login</a></li>
+									<li><a href="register/">Register</a></li>
+									{% endif %}
 									<li><a href="contact.html">Contact</a></li>
 								</ul>
 							</nav>
@@ -73,8 +77,8 @@
 			<ul>
 				<li><a href="inex.html">Home</a></li>
 				<li><a href="about.html">About us</a></li>
-				<li><a href="#">Services</a></li>
-				<li><a href="news.html">News</a></li>
+				<li><a href="login.html">Login</a></li>
+				<li><a href="register.html">Register</a></li>
 				<li><a href="contact.html">Contact</a></li>
 			</ul>
 		</div>
